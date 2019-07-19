@@ -1714,6 +1714,7 @@ pre .javascript .function {
   max-width: 120px;
   height: auto;
   border: 1px solid #eee;
+/*  这里开始修改头像圆形并旋转*/
   border-radius: 80px;
   -webkit-border-radius: 80px;
   -moz-border-radius: 80px;
@@ -1812,7 +1813,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #df6aff;
+  background: #f9ffec;
 }
 .feed-link,
 .chat {
