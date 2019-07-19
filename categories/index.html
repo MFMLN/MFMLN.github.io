@@ -561,6 +561,32 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
 
 
 
@@ -619,6 +645,10 @@
 
 
 
+  
+  
+  <script size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
 
 
 
@@ -671,6 +701,8 @@
   
 
   
+    
+  
 
   
 
@@ -681,7 +713,7 @@
         s.src = '/lib/three/three.min.js';
         d.body.appendChild(s);
       }
-      let styles = ['', '', ''];
+      let styles = ['', '/lib/three/canvas_lines.min.js', ''];
       loadStyle = () => {
         styles.forEach(x => {
           if (x !== '') {
