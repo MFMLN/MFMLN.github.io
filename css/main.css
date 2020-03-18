@@ -1875,7 +1875,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #9affff;
+  background: #2e8654;
 }
 .feed-link,
 .chat {
@@ -2986,7 +2986,8 @@ ul.breadcrumb li+li:last-child {
   margin-bottom: initial;
   top: initial;
 }
-body .container {
+.container {
+  background-color: #f00;
   background-img: url("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=603298279,973617830&fm=26&gp=0.jpg");
   background-repeat: no-repeat;
   background-position: 50% 50%;
