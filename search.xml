@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[搭建个人博客]]></title>
+    <url>%2F2020%2F01%2F10%2FHexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>博客</tag>
+        <tag>GitHubPage</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[微信小程序之冒泡事件]]></title>
     <url>%2F2019%2F10%2F10%2F%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bbind%E4%BA%8B%E4%BB%B6%E4%B8%8Ecatch%E4%BA%8B%E4%BB%B6%E5%8C%BA%E5%88%AB%2F</url>
     <content type="text"><![CDATA[简介 小程序中的事件分为冒泡事件和非冒泡事件两类。(一般默认是可冒泡的) 用bind绑定的事件不会阻止冒泡事件向上冒泡，catch绑定的事件可以阻止冒泡事件向上冒泡(下面以tap点击事件为例来讲解二者区别) &emsp;&emsp;&nbsp;例：bindtap和catchtap事件都是当用户点击该组件的时候会执行该页面对应的Page中找到相应的事件处理函数，但是不同的是用bindtap不会阻止冒泡事件向上冒泡，catchtap会阻止冒泡事件向上冒泡(下面的实例会让你对二者有更清晰直观的认识) 实例 wxml:三层view从里到外嵌套 1234567891011121314151617&lt;view id="outside" bindtap="outsideTap"&gt; outside view &lt;view id="middle" bindtap="middleTap"&gt; middle view &lt;view id="inside" bindtap="insideTap"&gt; inside view &lt;/view&gt; &lt;/view&gt; &lt;/view&gt; js:事件处理函数 12345678910111213141516outsideTap:function()&#123; console.log("触发了外部事件") &#125;, middleTap: function () &#123; console.log("触发了中部事件") &#125;, insideTap: function () &#123; console.log("触发了内部事件") &#125; 实例解析： 三个view均绑定bindtap事件 点击outside view打印 “触发了外部事件”；点击middle view打印 “触发了中部事件” 和 “触发了外部事件”；点击inside view打印 “触发了内部事件” 和 “触发了中部事件” 和 “触发了外部事件” ； 若将中部的midele view的bindtap事件改为catchtap事件 点击middle view打印 “触发了中部事件” (catchtap阻止了继续向上冒泡触发outsideTap事件)；点击inside view打印 “触发了内部事件” 和 “触发了中部事件” (catchtap阻止了继续向上冒泡触发outsideTap事件) ;]]></content>
