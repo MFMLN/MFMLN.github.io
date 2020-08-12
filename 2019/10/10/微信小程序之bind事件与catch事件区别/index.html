@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>微信小程序之冒泡事件 | MfmLn’Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简介  小程序中的事件分为冒泡事件和非冒泡事件两类。(一般默认是可冒泡的) 用bind绑定的事件不会阻止冒泡事件向上冒泡，catch绑定的事件可以阻止冒泡事件向上冒泡(下面以tap点击事件为例来讲解二者区别)   &amp;emsp;&amp;emsp;&amp;nbsp;例：bindtap和catchtap事件都是当用户点击该组件的时候会执行该页面对应的Page中找到相应的事件处理函数，但是不同的是用bindtap不会">
+<meta name="keywords" content="-小程序 - 事件冒泡">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序之冒泡事件">
+<meta property="og:url" content="http://yoursite.com/2019/10/10/微信小程序之bind事件与catch事件区别/index.html">
+<meta property="og:site_name" content="MfmLn’Blog">
+<meta property="og:description" content="简介  小程序中的事件分为冒泡事件和非冒泡事件两类。(一般默认是可冒泡的) 用bind绑定的事件不会阻止冒泡事件向上冒泡，catch绑定的事件可以阻止冒泡事件向上冒泡(下面以tap点击事件为例来讲解二者区别)   &amp;emsp;&amp;emsp;&amp;nbsp;例：bindtap和catchtap事件都是当用户点击该组件的时候会执行该页面对应的Page中找到相应的事件处理函数，但是不同的是用bindtap不会">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-10T12:23:22.892Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序之冒泡事件">
+<meta name="twitter:description" content="简介  小程序中的事件分为冒泡事件和非冒泡事件两类。(一般默认是可冒泡的) 用bind绑定的事件不会阻止冒泡事件向上冒泡，catch绑定的事件可以阻止冒泡事件向上冒泡(下面以tap点击事件为例来讲解二者区别)   &amp;emsp;&amp;emsp;&amp;nbsp;例：bindtap和catchtap事件都是当用户点击该组件的时候会执行该页面对应的Page中找到相应的事件处理函数，但是不同的是用bindtap不会">
+  
+    <link rel="alternate" href="/atom.xml" title="MfmLn’Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MfmLn’Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">千里之行，始于足下</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-微信小程序之bind事件与catch事件区别" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/10/微信小程序之bind事件与catch事件区别/" class="article-date">
+  <time datetime="2019-10-10T12:21:07.000Z" itemprop="datePublished">2019-10-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/微信小程序/">微信小程序</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      微信小程序之冒泡事件
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>简介</strong></p>
+<ul>
+<li>小程序中的事件分为<font color="#f33b45">冒泡事件</font>和<font color="#f33b45">非冒泡事件</font>两类。(一般默认是可冒泡的)</li>
+<li>用<font color="#f33b45">bind</font>绑定的事件<font color="#f33b45">不会阻止冒泡事件向上冒泡</font>，<font color="#f33b45">catch</font>绑定的事件<font color="#f33b45">可以阻止冒泡事件向上冒泡</font>(下面以tap点击事件为例来讲解二者区别)<br>  <font size="3px" color="#999999"> &emsp;&emsp;&nbsp;例：bindtap和catchtap事件都是当用户点击该组件的时候会执行该页面对应的Page中找到相应的事件处理函数，但是不同的是用bindtap不会阻止冒泡事件向上冒泡，catchtap会阻止冒泡事件向上冒泡(下面的实例会让你对二者有更清晰直观的认识)</font>  </li>
+</ul>
+<p><strong>实例</strong></p>
+<p>wxml:三层view从里到外嵌套</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">id</span>=<span class="string">"outside"</span>  <span class="attr">bindtap</span>=<span class="string">"outsideTap"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">         outside view</span><br><span class="line">         </span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">id</span>=<span class="string">"middle"</span> <span class="attr">bindtap</span>=<span class="string">"middleTap"</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">         middle view</span><br><span class="line"> </span><br><span class="line">       <span class="tag">&lt;<span class="name">view</span> <span class="attr">id</span>=<span class="string">"inside"</span> <span class="attr">bindtap</span>=<span class="string">"insideTap"</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">        inside view</span><br><span class="line"> </span><br><span class="line">       <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">   <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>js:事件处理函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">outsideTap:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> </span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"触发了外部事件"</span>)</span><br><span class="line"> </span><br><span class="line">&#125;,</span><br><span class="line"> middleTap: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> </span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"触发了中部事件"</span>)</span><br><span class="line"> </span><br><span class="line">&#125;, </span><br><span class="line">insideTap: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  </span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"触发了内部事件"</span>)</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实例解析：</strong></p>
+<ul>
+<li>三个view均绑定bindtap事件<ul>
+<li>点击outside view打印 “触发了外部事件”；<br>点击middle view打印 “触发了中部事件”   和   “触发了外部事件”；<br>点击inside view打印 “触发了内部事件”   和   “触发了中部事件” 和    “触发了外部事件” ；</li>
+</ul>
+</li>
+<li>若将中部的midele view的bindtap事件改为catchtap事件  <ul>
+<li>点击middle view打印 “触发了中部事件”  (catchtap阻止了继续向上冒泡触发outsideTap事件)；<br>点击inside view打印 “触发了内部事件”   和   “触发了中部事件” (catchtap阻止了继续向上冒泡触发outsideTap事件) ;</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/10/微信小程序之bind事件与catch事件区别/" data-id="ckdqrg6ju0007rgv4hw8k8ohs" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序-事件冒泡/">-小程序 - 事件冒泡</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/10/Hexo博客搭建/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          搭建个人博客
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/10/微信小程序之文件下载/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">微信小程序之文件下载</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/git-github/">git&github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信小程序/">微信小程序</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/小程序-事件冒泡/">-小程序 - 事件冒泡</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHubPage/">GitHubPage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/downloadFile/">downloadFile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python爬虫小demo/">python爬虫小demo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小程序/">小程序</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/小程序-事件冒泡/" style="font-size: 10px;">-小程序 - 事件冒泡</a> <a href="/tags/GitHubPage/" style="font-size: 10px;">GitHubPage</a> <a href="/tags/downloadFile/" style="font-size: 10px;">downloadFile</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/python爬虫小demo/" style="font-size: 10px;">python爬虫小demo</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/小程序/" style="font-size: 10px;">小程序</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/01/10/Hexo博客搭建/">搭建个人博客</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/10/微信小程序之bind事件与catch事件区别/">微信小程序之冒泡事件</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/10/微信小程序之文件下载/">微信小程序之文件下载</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/23/weather-py/">weather_py</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/19/git操作/">如何用git删除github远程仓库上的某个文件夹/文件</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 MfmLn<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"superSample":2,"width":180,"height":340,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
