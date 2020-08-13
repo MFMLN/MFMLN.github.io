@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title><![CDATA[搭建个人博客]]></title>
-    <url>%2Fblog%2F2020%2F01%2F10%2FHexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%2F</url>
+    <url>%2F2020%2F01%2F10%2FHexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%2F</url>
     <content type="text"></content>
       <categories>
         <category>hexo</category>
@@ -15,7 +15,7 @@
   </entry>
   <entry>
     <title><![CDATA[微信小程序之冒泡事件]]></title>
-    <url>%2Fblog%2F2019%2F10%2F10%2F%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bbind%E4%BA%8B%E4%BB%B6%E4%B8%8Ecatch%E4%BA%8B%E4%BB%B6%E5%8C%BA%E5%88%AB%2F</url>
+    <url>%2F2019%2F10%2F10%2F%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bbind%E4%BA%8B%E4%BB%B6%E4%B8%8Ecatch%E4%BA%8B%E4%BB%B6%E5%8C%BA%E5%88%AB%2F</url>
     <content type="text"><![CDATA[简介 小程序中的事件分为冒泡事件和非冒泡事件两类。(一般默认是可冒泡的) 用bind绑定的事件不会阻止冒泡事件向上冒泡，catch绑定的事件可以阻止冒泡事件向上冒泡(下面以tap点击事件为例来讲解二者区别) &emsp;&emsp;&nbsp;例：bindtap和catchtap事件都是当用户点击该组件的时候会执行该页面对应的Page中找到相应的事件处理函数，但是不同的是用bindtap不会阻止冒泡事件向上冒泡，catchtap会阻止冒泡事件向上冒泡(下面的实例会让你对二者有更清晰直观的认识) 实例 wxml:三层view从里到外嵌套 1234567891011121314151617&lt;view id="outside" bindtap="outsideTap"&gt; outside view &lt;view id="middle" bindtap="middleTap"&gt; middle view &lt;view id="inside" bindtap="insideTap"&gt; inside view &lt;/view&gt; &lt;/view&gt; &lt;/view&gt; js:事件处理函数 12345678910111213141516outsideTap:function()&#123; console.log("触发了外部事件") &#125;, middleTap: function () &#123; console.log("触发了中部事件") &#125;, insideTap: function () &#123; console.log("触发了内部事件") &#125; 实例解析： 三个view均绑定bindtap事件 点击outside view打印 “触发了外部事件”；点击middle view打印 “触发了中部事件” 和 “触发了外部事件”；点击inside view打印 “触发了内部事件” 和 “触发了中部事件” 和 “触发了外部事件” ； 若将中部的midele view的bindtap事件改为catchtap事件 点击middle view打印 “触发了中部事件” (catchtap阻止了继续向上冒泡触发outsideTap事件)；点击inside view打印 “触发了内部事件” 和 “触发了中部事件” (catchtap阻止了继续向上冒泡触发outsideTap事件) ;]]></content>
       <categories>
         <category>微信小程序</category>
@@ -26,7 +26,7 @@
   </entry>
   <entry>
     <title><![CDATA[微信小程序之文件下载]]></title>
-    <url>%2Fblog%2F2019%2F10%2F10%2F%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%2F</url>
+    <url>%2F2019%2F10%2F10%2F%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%2F</url>
     <content type="text"><![CDATA[昨晚小程序前台调用API去后台请求图片文件，结果发现返回的是一堆乱码，也没法在image里显示出来，顿时懵了截图:本来以为是后台传的数据出问题了，但网上查了一下发现说后台传的是二进制流图片乱码，然后找到网上各种转码方式…然而，在我觉得快要成功的时候，却发现那些方式根本解决不了问题，如果你也发现解决不了，那可能和我犯了同样错误，我让自己冷静下来再检查一遍代码，结果发现了一处可能的错误并尝试修改：==文件下载只能用wx.downloadFile而不能是wx.request== 大概比较二者区别： request用于ajax数据交互，不负责下载文件 downloadFile专门用于请求下载文件，请求后直接得到对应文件临时路径 修改后返回的图片路径就可以直接在image中显示了]]></content>
       <categories>
         <category>微信小程序</category>
@@ -38,7 +38,7 @@
   </entry>
   <entry>
     <title><![CDATA[weather_py]]></title>
-    <url>%2Fblog%2F2019%2F07%2F23%2Fweather-py%2F</url>
+    <url>%2F2019%2F07%2F23%2Fweather-py%2F</url>
     <content type="text"><![CDATA[python之中国天气网爬取]]></content>
       <categories>
         <category>python</category>
@@ -49,7 +49,7 @@
   </entry>
   <entry>
     <title><![CDATA[如何用git删除github远程仓库上的某个文件夹/文件]]></title>
-    <url>%2Fblog%2F2019%2F07%2F19%2Fgit%E6%93%8D%E4%BD%9C%2F</url>
+    <url>%2F2019%2F07%2F19%2Fgit%E6%93%8D%E4%BD%9C%2F</url>
     <content type="text"><![CDATA[1.在讲解删除操作之前先复习一波简单的上传项目文件(以”动画demo.md”文件为例)到github步骤： 将要上传到github的项目文件粘贴到已初始化生成.git文件夹的本地git仓库中 空白处右击 -&gt; Git Bash Here打开命令窗口 敲下面命令行 #将单个文件夹(如”动画demo.md”)或全部文件夹添加到git仓库(暂存区) git add “文件/文件夹” 或者git add * #将暂存区的文件提交到git仓库(版本库) git commit -m “对本次操作的修改说明” #将文件上传到github远程仓库 git push -u origin master 大功告成 2.接下来讲解删除操作，大家知道在github上只能删除仓库而不能直接删除文件或文件夹(以”动画demo.md”为例)，有时候真的很头疼，所以只能通过命令行来解决了： 删除前github仓库中： 在要删除github上文件对应本地git仓库中 -&gt; 空白处右击 -&gt; Git Bash Here打开命令窗口 敲下面命令行 #将远程仓库里面的项目文件拉下来，然后可通过dir命令行查看有哪些文件夹 git pull origin master #删除文件(如“动画demo.md‘)或者文件夹 git rm –cached “文件”/git rm -r –cached “文件夹’ #将删除操作提交到git仓库 git commit -m “操作说明” #将本次修改更新到github远程仓库 git push -u origin master -删除后github仓库中：注意须知:此删除操作只会删除github远程仓库和git仓库(暂存区和版本库)的文件(夹)，而git仓库的工作区(即本地目录)下的文件(夹)不受影响]]></content>
       <categories>
         <category>git&amp;github</category>
@@ -60,7 +60,7 @@
   </entry>
   <entry>
     <title><![CDATA[hello]]></title>
-    <url>%2Fblog%2F2019%2F07%2F19%2Fhello-world%2F</url>
+    <url>%2F2019%2F07%2F19%2Fhello-world%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
       <categories>
         <category>前端</category>
