@@ -48,17 +48,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[hello]]></title>
-    <url>%2Fblog%2F2019%2F07%2F19%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[如何用git删除github远程仓库上的某个文件夹/文件]]></title>
     <url>%2Fblog%2F2019%2F07%2F19%2Fgit%E6%93%8D%E4%BD%9C%2F</url>
     <content type="text"><![CDATA[1.在讲解删除操作之前先复习一波简单的上传项目文件(以”动画demo.md”文件为例)到github步骤： 将要上传到github的项目文件粘贴到已初始化生成.git文件夹的本地git仓库中 空白处右击 -&gt; Git Bash Here打开命令窗口 敲下面命令行 #将单个文件夹(如”动画demo.md”)或全部文件夹添加到git仓库(暂存区) git add “文件/文件夹” 或者git add * #将暂存区的文件提交到git仓库(版本库) git commit -m “对本次操作的修改说明” #将文件上传到github远程仓库 git push -u origin master 大功告成 2.接下来讲解删除操作，大家知道在github上只能删除仓库而不能直接删除文件或文件夹(以”动画demo.md”为例)，有时候真的很头疼，所以只能通过命令行来解决了： 删除前github仓库中： 在要删除github上文件对应本地git仓库中 -&gt; 空白处右击 -&gt; Git Bash Here打开命令窗口 敲下面命令行 #将远程仓库里面的项目文件拉下来，然后可通过dir命令行查看有哪些文件夹 git pull origin master #删除文件(如“动画demo.md‘)或者文件夹 git rm –cached “文件”/git rm -r –cached “文件夹’ #将删除操作提交到git仓库 git commit -m “操作说明” #将本次修改更新到github远程仓库 git push -u origin master -删除后github仓库中：注意须知:此删除操作只会删除github远程仓库和git仓库(暂存区和版本库)的文件(夹)，而git仓库的工作区(即本地目录)下的文件(夹)不受影响]]></content>
@@ -67,6 +56,17 @@
       </categories>
       <tags>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hello]]></title>
+    <url>%2Fblog%2F2019%2F07%2F19%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
       </tags>
   </entry>
 </search>
